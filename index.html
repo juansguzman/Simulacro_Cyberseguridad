@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Ciberseguridad Institucional</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans select-none">
+
+    <div id="pantalla-login" class="fixed inset-0 bg-slate-950/90 z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl max-w-md w-full space-y-6 shadow-2xl animate-fade-in">
+            <div class="text-center">
+                <span class="text-4xl">🔐</span>
+                <h2 class="text-2xl font-black text-white mt-3">Registro de Investigador</h2>
+                <p class="text-xs text-slate-400 mt-1">Valida tus datos institucionales para iniciar el entrenamiento</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Nombre Completo</label>
+                    <input type="text" id="login-nombre" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm focus:border-blue-500 focus:outline-none font-medium text-slate-200" placeholder="Ej. Juan Pérez">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Correo Institucional</label>
+                    <input type="email" id="login-correo" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm focus:border-blue-500 focus:outline-none font-mono text-slate-200" placeholder="usuario@institucion.gob.pa">
+                </div>
+                <button onclick="verificarAccesoUsuario()" id="btn-login-submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold p-3 rounded-xl text-sm transition shadow-md cursor-pointer flex justify-center items-center gap-2">
+                    Ingresar al Centro de Mando
+                </button>
+                <p id="login-error" class="text-xs text-red-400 text-center font-semibold hidden"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 py-8">
+        
+        <header class="flex flex-col md:flex-row justify-between items-center mb-12 border-b border-slate-800 pb-6 gap-4">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl font-extrabold text-blue-500 tracking-tight mb-2">
+                    🛡️ Centro de Simulación de Ciberseguridad
+                </h1>
+                <p class="text-slate-400 text-md">Transformando usuarios vulnerables en investigadores digitales</p>
+                <p id="user-display-tag" class="text-xs text-emerald-400 font-mono mt-1 font-semibold"></p>
+            </div>
+            
+            <div class="bg-slate-800 border border-slate-700 rounded-xl p-3 flex items-center space-x-3 shadow-md">
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="dev-mode-toggle" class="sr-only peer" onchange="alternarModoLibre(this.checked)">
+                    <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
+                <div class="flex flex-col">
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-400">Modo Sandbox</span>
+                    <span class="text-xs text-slate-400">Desbloquear todas las misiones</span>
+                </div>
+            </div>
+        </header>
+
+        <section id="menu-principal" class="hidden">
+            <h2 class="text-2xl font-bold mb-6 text-slate-300">Selecciona tu Misión Operativa:</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div id="card-mision-1" class="bg-slate-800 p-6 rounded-xl border border-slate-700 opacity-60 flex flex-col justify-between" onclick="cargarMision(1)">
+                    <div>
+                        <span class="bg-blue-500/10 text-blue-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 01</span>
+                        <h3 class="text-xl font-bold mt-3 text-slate-400">Fortalezas Digitales 🔒</h3>
+                        <p class="text-slate-400 text-sm mt-2">Blindando la identidad digital con 2FA y contraseñas robustas de manera inexpugnable.</p>
+                    </div>
+                </div>
+
+                <div id="card-mision-2" class="bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between relative overflow-hidden cursor-not-allowed" onclick="cargarMision(2)">
+                    <div>
+                        <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 02</span>
+                        <h3 class="text-xl font-bold mt-3 text-slate-400">Cazadores de Phishing 🔒</h3>
+                        <p class="text-slate-500 text-sm mt-2">Taller técnico-práctico de análisis de cabeceras de correo para desmontar engaños.</p>
+                    </div>
+                </div>
+
+                <div id="card-mision-3" class="bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between cursor-not-allowed" onclick="cargarMision(3)">
+                    <div>
+                        <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 03</span>
+                        <h3 class="text-xl font-bold mt-3 text-slate-400">Túneles y Candados 🔒</h3>
+                        <p class="text-slate-500 text-sm mt-2">Cifrado de comunicaciones, validación de certificados SSL y protección en redes Wi-Fi públicas.</p>
+                    </div>
+                </div>
+
+                <div id="card-mision-4" class="bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between cursor-not-allowed" onclick="cargarMision(4)">
+                    <div>
+                        <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 04</span>
+                        <h3 class="text-xl font-bold mt-3 text-slate-400">Colaboración Segura 🔒</h3>
+                        <p class="text-slate-500 text-sm mt-2">Control de accesos y gestión del ciclo de vida del dato mediante enlaces dinámicos de OneDrive.</p>
+                    </div>
+                </div>
+
+                <div id="card-mision-5" class="bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between md:col-span-2 cursor-not-allowed" onclick="cargarMision(5)">
+                    <div>
+                        <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 05</span>
+                        <h3 class="text-xl font-bold mt-3 text-slate-400">IA con Ética y Seguridad 🔒</h3>
+                        <p class="text-slate-500 text-sm mt-2">Gobernanza de Inteligencia Artificial, anonimización de datos públicos y mitigación de fugas de información.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="panel-mision" class="hidden bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-xl relative">
+            <div class="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
+                <h2 id="titulo-mision" class="text-2xl font-bold text-white"></h2>
+                <button onclick="volverAlMenu()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 text-sm py-1.5 px-4 rounded-lg transition cursor-pointer">
+                    ← Volver al Menú
+                </button>
+            </div>
+            
+            <div id="contenedor-ejercicio"></div>
+            
+            <div id="url-tooltip" class="hidden absolute bg-black/95 text-yellow-400 text-xs border border-yellow-600 px-3 py-1.5 rounded-md shadow-lg font-mono z-50 pointer-events-none"></div>
+        </section>
+
+    </div>
+
+    <script src="preguntas.js"></script>
+    <script src="misiones/mision1.js"></script>
+    <script src="misiones/mision2.js"></script>
+    <script src="misiones/mision3.js"></script>
+    <script src="misiones/mision4.js"></script>
+    <script src="misiones/mision5.js"></script>
+
+    <script>
+
+        // ========================================================
+        // 🎲 ALGORITMO DE SHUFFLE (BARAJADO AUTOMÁTICO)
+        // ========================================================
+        function mezclarArray(array) {
+            let copia = [...array];
+            for (let i = copia.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copia[i], copia[j]] = [copia[j], copia[i]];
+            }
+            return copia;
+        }
+        // CONFIGURACIÓN DEL TELEPORT DE APPS SCRIPT (MANTENIDO)
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwMa7jUxRiHzFLTLHlN3z-VDgJxTbQGBnrKc7flwKrvnc9XIQfUDCLkY9MwKO5iWeujig/exec";
+
+        // ESTADO DE TELEMETRÍA GLOBAL
+        let estadoJuego = {
+            usuario: { nombre: "", correo: "" },
+            misionActual: null,
+            ejercicioActualIndex: 0,
+            varianteActiva: null,
+            misionesDesbloqueadas: [1], 
+            modoLibreActivado: false,
+            puntuacion: {
+                1: { puntos: 0, fallos: 0 },
+                2: { puntos: 0, fallos: 0 },
+                3: { puntos: 0, fallos: 0 },
+                4: { puntos: 0, fallos: 0 },
+                5: { puntos: 0, fallos: 0 }
+            }
+        };
+
+        // Variables globales requeridas por los módulos distribuidos
+        let m3Shields = { vpn: false, dns: false }; 
+        let m4IntervaloReloj = null;
+        let m5Escudos = { anonimo: false, seguro: false, filtrado: false };
+
+        // --- SISTEMAS DE COMUNICACIÓN CON SERVIDORES GOOGLE ---
+        
+        async function verificarAccesoUsuario() {
+            const inputNombre = document.getElementById('login-nombre').value.trim();
+            const inputCorreo = document.getElementById('login-correo').value.trim();
+            const errorLabel = document.getElementById('login-error');
+            const submitBtn = document.getElementById('btn-login-submit');
+
+            if (!inputNombre || !inputCorreo) {
+                errorLabel.innerText = "⚠️ Ambos campos son estrictamente requeridos.";
+                errorLabel.classList.remove('hidden');
+                return;
+            }
+
+            errorLabel.classList.add('hidden');
+            submitBtn.innerText = "⏳ Verificando credenciales...";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "cors",
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify({ action: "checkEmail", correo: inputCorreo })
+                });
+                const resultado = await response.json();
+                
+                if (resultado.exists) {
+                    errorLabel.innerHTML = "❌ <strong>Acceso Denegado:</strong> Este correo ya completó la prueba o se encuentra registrado en la matriz.";
+                    errorLabel.classList.remove('hidden');
+                    submitBtn.innerText = "Ingresar al Centro de Mando";
+                    submitBtn.disabled = false;
+                } else {
+                    concederAccesoLocal(inputNombre, inputCorreo);
+                }
+            } catch (err) {
+                console.warn("Conexión remota inactiva o URL sin configurar. Iniciando Sandbox local preventivo.");
+                concederAccesoLocal(inputNombre, inputCorreo);
+            }
+        }
+
+        function concederAccesoLocal(nombre, correo) {
+            estadoJuego.usuario.nombre = nombre;
+            estadoJuego.usuario.correo = correo;
+            document.getElementById('user-display-tag').innerText = `👤 Agente: ${nombre} (${correo})`;
+            document.getElementById('pantalla-login').classList.add('hidden');
+            document.getElementById('menu-principal').classList.remove('hidden');
+            actualizarInterfazMenu();
+        }
+
+        async function enviarResultadosASheet() {
+            const contenedor = document.getElementById('contenedor-ejercicio');
+            contenedor.innerHTML = `
+                <div class="text-center py-8 space-y-3">
+                    <div class="animate-spin text-3xl inline-block">⏳</div>
+                    <p class="text-sm text-slate-400 font-mono">Transmitiendo telemetría cifrada al servidor central...</p>
+                </div>`;
+
+            let puntosTotales = 0;
+            let fallosTotales = 0;
+            for(let key in estadoJuego.puntuacion) {
+                puntosTotales += estadoJuego.puntuacion[key].puntos;
+                fallosTotales += estadoJuego.puntuacion[key].fallos;
+            }
+
+            const payload = {
+                action: "submitScore",
+                nombre: estadoJuego.usuario.nombre,
+                correo: estadoJuego.usuario.correo,
+                puntajeGeneral: puntosTotales,
+                m1: estadoJuego.puntuacion[1].puntos,
+                m2: estadoJuego.puntuacion[2].puntos,
+                m3: estadoJuego.puntuacion[3].puntos,
+                m4: estadoJuego.puntuacion[4].puntos,
+                m5: estadoJuego.puntuacion[5].puntos,
+                fallosTotales: fallosTotales
+            };
+
+            try {
+                await fetch(APPS_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "cors",
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify(payload)
+                });
+                
+                contenedor.innerHTML = `
+                    <div class="text-center py-8 space-y-4">
+                        <div class="text-5xl">✅</div>
+                        <h3 class="text-2xl font-bold text-emerald-400">¡Expediente Guardado Exitosamente!</h3>
+                        <p class="text-slate-300 max-w-md mx-auto text-sm">Tus métricas de resiliencia y gobernanza de ciberseguridad han sido inyectadas en la base de datos central de la institución. Ya puedes cerrar esta ventana de forma segura.</p>
+                    </div>
+                `;
+            } catch (err) {
+                console.error("Fallo de red al transmitir a Google Sheets:", err);
+                contenedor.innerHTML = `
+                    <div class="text-center py-8 space-y-4">
+                        <div class="text-5xl">⚠️</div>
+                        <h3 class="text-xl font-bold text-yellow-400">Error de Sincronización Remota</h3>
+                        <p class="text-slate-300 max-w-md mx-auto text-xs">No se pudo confirmar el guardado automático en el Apps Script. Por seguridad, toma una captura de pantalla de tus métricas técnicas abajo:</p>
+                        <pre class="bg-black text-[10px] p-4 text-left rounded-lg text-slate-400 overflow-x-auto max-w-md mx-auto font-mono">${JSON.stringify(payload, null, 2)}</pre>
+                    </div>
+                `;
+            }
+        }
+
+        // --- SISTEMAS INTERNOS DE ENRUTAMIENTO Y MENÚS (REINCORPORADOS) ---
+
+        function alternarModoLibre(estaChequeado) {
+            estadoJuego.modoLibreActivado = estaChequeado;
+            actualizarInterfazMenu();
+        }
+
+        function cargarMision(id) {
+            let idNumerico = parseInt(id);
+            if (!estadoJuego.misionesDesbloqueadas.includes(idNumerico) && !estadoJuego.modoLibreActivado) {
+                alert("🔒 Operación Bloqueada. Completa las misiones anteriores o activa el 'Modo Sandbox' en la cabecera.");
+                return;
+            }
+            
+            estadoJuego.misionActual = idNumerico;
+            estadoJuego.ejercicioActualIndex = 0;
+            
+            m3Shields = { vpn: false, dns: false };
+            if (m4IntervaloReloj) clearInterval(m4IntervaloReloj);
+            
+            document.getElementById('menu-principal').classList.add('hidden');
+            document.getElementById('panel-mision').classList.remove('hidden');
+            document.getElementById('titulo-mision').innerText = `Misión ${idNumerico}: Operación en Curso`;
+            
+            presentarEjercicio();
+        }
+
+        function volverAlMenu() {
+            if (m4IntervaloReloj) clearInterval(m4IntervaloReloj);
+            document.getElementById('panel-mision').classList.add('hidden');
+            document.getElementById('menu-principal').classList.remove('hidden');
+            actualizarInterfazMenu();
+        }
+
+        function presentarEjercicio() {
+            const listaEjercicios = bancoPreguntas[estadoJuego.misionActual];
+            
+            if (!listaEjercicios || estadoJuego.ejercicioActualIndex >= listaEjercicios.length) {
+                finalizarMision();
+                return;
+            }
+
+            const ejercicio = listaEjercicios[estadoJuego.ejercicioActualIndex];
+            const indiceAleatorio = Math.floor(Math.random() * ejercicio.variantes.length);
+            const variante = ejercicio.variantes[indiceAleatorio];
+            estadoJuego.varianteActiva = variante; 
+
+            const contenedor = document.getElementById('contenedor-ejercicio');
+            let misionId = parseInt(estadoJuego.misionActual);
+            
+            if (misionId === 1) renderizarMision1(ejercicio, variante, contenedor);
+            else if (misionId === 2) renderizarMision2(ejercicio, variante, contenedor);
+            else if (misionId === 3) renderizarMision3(ejercicio, variante, contenedor);
+            else if (misionId === 4) renderizarMision4(ejercicio, variante, contenedor);
+            else if (misionId === 5) renderizarMision5(ejercicio, variante, contenedor);
+        }
+
+        function avanzarEjercicio() {
+            estadoJuego.ejercicioActualIndex++;
+            presentarEjercicio();
+        }
+
+        function finalizarMision() {
+            let misionIdActual = parseInt(estadoJuego.misionActual);
+            
+            if (misionIdActual === 5) {
+                enviarResultadosASheet();
+                return;
+            }
+
+            const siguienteMision = misionIdActual + 1;
+            if (siguienteMision <= 5 && !estadoJuego.misionesDesbloqueadas.includes(siguienteMision)) {
+                estadoJuego.misionesDesbloqueadas.push(siguienteMision);
+            }
+
+            const contenedor = document.getElementById('contenedor-ejercicio');
+            contenedor.innerHTML = `
+                <div class="text-center py-8 space-y-4 animate-fade-in">
+                    <div class="text-5xl">🏆</div>
+                    <h3 class="text-2xl font-bold text-emerald-400">¡Misión Completada Exitosamente!</h3>
+                    <p class="text-slate-300 max-w-md mx-auto text-sm">Has resuelto todas las anomalías de este sector operativo de la organización. El sistema ha desbloqueado la siguiente operación en tu panel central.</p>
+                    <button onclick="volverAlMenu()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-6 rounded-lg transition mt-4 cursor-pointer shadow-md">Regresar a la Central de Operaciones</button>
+                </div>
+            `;
+        }
+
+        // Reemplaza ÚNICAMENTE esta función dentro del <script> de tu index.html:
+        function actualizarInterfazMenu() {
+            for (let i = 1; i <= 5; i++) {
+                const tarjeta = document.getElementById(`card-mision-${i}`);
+                if (!tarjeta) continue;
+
+                const estaDesbloqueada = estadoJuego.misionesDesbloqueadas.includes(i) || estadoJuego.modoLibreActivado;
+                const enc = tarjeta.querySelector('h3');
+
+                if (estaDesbloqueada) {
+                    // ESTADO DESBLOQUEADO: Brillante, con hover interactivo y puntero activo
+                    tarjeta.classList.remove('opacity-60', 'cursor-not-allowed', 'bg-slate-800/50', 'border-slate-800');
+                    tarjeta.classList.add('bg-slate-800', 'cursor-pointer', 'border-blue-500/20', 'hover:border-blue-500', 'opacity-100');
+                    
+                    if (enc) {
+                        enc.innerHTML = enc.innerHTML.replace('🔒', '🔓');
+                        enc.classList.remove('text-slate-400');
+                        enc.classList.add('text-white');
+                    }
+                    if (!tarjeta.querySelector('button')) {
+                        const btn = document.createElement('button');
+                        btn.className = "mt-6 bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg transition text-sm self-start cursor-pointer shadow-md";
+                        btn.innerText = "Iniciar Misión";
+                        tarjeta.appendChild(btn);
+                    }
+                } else {
+                    // ESTADO BLOQUEADO: Opaco, atenuado y sin respuestas al cursor
+                    tarjeta.classList.remove('bg-slate-800', 'cursor-pointer', 'border-blue-500/20', 'hover:border-blue-500', 'opacity-100');
+                    tarjeta.classList.add('bg-slate-800/50', 'opacity-60', 'cursor-not-allowed', 'border-slate-800');
+                    
+                    if (enc) {
+                        enc.innerHTML = enc.innerHTML.replace('🔓', '🔒');
+                        enc.classList.add('text-slate-400');
+                        enc.classList.remove('text-white');
+                    }
+                    const btn = tarjeta.querySelector('button');
+                    if (btn) btn.remove();
+                }
+            }
+        }
+
+        window.onload = actualizarInterfazMenu;
+    </script>
+</body>
+</html>
