@@ -14,9 +14,14 @@ function renderizarMision4(ejercicio, variante, contenedor) {
     if (ejercicio.tipo === "configurador" || ejercicio.type === "configurador") {
         contenedor.innerHTML = `
             <div class="space-y-6 animate-fade-in">
-                <div class="bg-blue-600/10 p-4 rounded-lg border border-blue-500/20">
-                    <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">${ejercicio.id} — Panel de OneDrive</span>
-                    <p class="text-slate-300 text-sm mt-1"><strong>Destinatario:</strong> ${variante.solicitante} | <strong>Archivo:</strong> ${variante.archivoNombre}</p>
+                <div class="bg-blue-600/10 p-4 rounded-lg border border-blue-500/20 space-y-2">
+                    <div>
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">${ejercicio.id} — ${ejercicio.titulo}</span>
+                        <p class="text-slate-300 text-sm mt-1"><strong>Situación:</strong> ${ejercicio.contextoSuperior}</p>
+                    </div>
+                    <div class="text-xs text-slate-400 border-t border-blue-500/10 pt-2">
+                        <strong>Destinatario:</strong> ${variante.solicitante} | <strong>Archivo:</strong> ${variante.archivoNombre}
+                    </div>
                 </div>
 
                 <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 max-w-md mx-auto space-y-4 shadow-xl">
@@ -63,7 +68,7 @@ function renderizarMision4(ejercicio, variante, contenedor) {
         `;
     }
     
-    // ESCENARIO B: TRIAJE DE CONTENCIÓN ANTE FUGA CON TEMPORIZADOR CONTINUO
+    // ESCENARIO B: TRIAJE DE CONTENCION ANTE FUGA CON TEMPORIZADOR CONTINUO
     else if (ejercicio.tipo === "temporizador" || ejercicio.type === "temporizador") {
         let tiempoRestante = variante.tiempoLimite;
         const opcionesEmergencia = [
@@ -114,9 +119,14 @@ function renderizarMision4(ejercicio, variante, contenedor) {
     else if (ejercicio.tipo === "versiones" || ejercicio.type === "versiones") {
         contenedor.innerHTML = `
             <div class="space-y-6 animate-fade-in">
-                <div class="bg-blue-600/10 p-4 rounded-lg border border-blue-500/20">
-                    <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">${ejercicio.id} — Consola de Resiliencia</span>
-                    <p class="text-slate-300 text-sm mt-1"><strong>Caso:</strong> ${ejercicio.contextoSuperior} | <strong>Archivo:</strong> ${variante.archivoNombre}</p>
+                <div class="bg-blue-600/10 p-4 rounded-lg border border-blue-500/20 space-y-2">
+                    <div>
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">${ejercicio.id} — ${ejercicio.titulo}</span>
+                        <p class="text-slate-300 text-sm mt-1"><strong>Caso:</strong> ${ejercicio.contextoSuperior}</p>
+                    </div>
+                    <div class="text-xs text-slate-400 border-t border-blue-500/10 pt-2">
+                        <strong>Archivo Secuestrado:</strong> ${variante.archivoNombre}
+                    </div>
                 </div>
 
                 <div class="bg-slate-950 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
@@ -140,7 +150,7 @@ function renderizarMision4(ejercicio, variante, contenedor) {
                                         <td class="p-3 font-bold text-blue-400">${v.version}</td>
                                         <td class="p-3">${v.fecha}</td>
                                         <td class="p-3 font-sans">${v.autor}</td>
-                                        <td class="p-3 font-sans ${v.esCorrecta ? 'text-emerald-400 font-semibold' : 'text-slate-400'}">${v.detalle}</td>
+                                        <td class="p-3 font-sans text-slate-400">${v.detalle}</td>
                                         <td class="p-3 text-right">
                                             <button onclick="validarM4Versiones(${v.esCorrecta})" class="bg-slate-800 border border-slate-700 text-blue-400 px-3 py-1 rounded text-[10px] font-sans cursor-pointer hover:bg-blue-600 hover:text-white transition">
                                                 Restaurar

@@ -179,7 +179,7 @@ const bancoPreguntas = {
                         { id: "r2", texto: "El cuerpo del mensaje utiliza disparadores psicológicos basados en la urgencia y el miedo al bloqueo.", esCorrecta: true },
                         { id: "r3", texto: "Al pasar el cursor sobre el enlace, la URL real revela un dominio falso que suplanta la identidad institucional.", esCorrecta: true },
                         { id: "r4", texto: "La auditoría de cabeceras técnicas muestra que tanto el SPF como el DKIM arrojaron un estado de FAIL.", esCorrecta: true },
-                        { id: "r5", texto: "El formato de firma del correo electrónico carece del logotipo oficial e institucional en alta resolución.", esCorrecta: false }
+                        { id: "r5", texto: "El correo electrónico no fue enviado con copia obligatoria (CC) a la Dirección de Tecnología ni al jefe inmediato de tu departamento.", esCorrecta: false }
                     ],
                     explicacionExito: "¡Excelente investigación! Detectaste todas las señales de alerta (red flags). El dominio usaba un '1' en lugar de una 'i' (presidenc1a), el enlace simulaba el portal real, el lenguaje explotaba la urgencia y las cabeceras técnicas (SPF/DKIM) confirmaron el engaño. Activaste correctamente el protocolo SOS de reporte."
                 }
@@ -455,7 +455,7 @@ const bancoPreguntas = {
             variantes: [
                 {
                     archivoNombre: "Matriz_Planificacion_Confidencial.xlsx",
-                    tiempoLimite: 15, // Segundos para reaccionar antes de que falle
+                    tiempoLimite: 60, // Segundos para reaccionar antes de que falle
                     explicacionExito: "¡Reacción quirúrgica! Ejecutaste el protocolo de emergencia a tiempo. Al revocar el enlace de forma instantánea, bloqueaste la pantalla del usuario simulado en el exterior de la organización, mitigando una filtración accidental inminente."
                 }
             ]
@@ -471,10 +471,10 @@ const bancoPreguntas = {
                     archivoNombre: "Reporte_Gestion_Gobierno.pdf",
                     // Listado de versiones en la línea de tiempo. El usuario debe elegir la fila correcta
                     tablaVersiones: [
-                        { version: "v4", fecha: "Hace 2 minutos", autor: "Sistema (Malware)", detalle: "🔒 Modificado y Cifrado por Ransomware", esCorrecta: false },
-                        { version: "v3", fecha: "Hace 5 minutos", autor: "Sistema (Malware)", detalle: "🔒 Modificado y Cifrado por Ransomware", esCorrecta: false },
-                        { version: "v2", fecha: "Hace 30 minutos", autor: "Elena Marín", detalle: "📝 Modificación limpia - Estado original guardado", esCorrecta: true },
-                        { version: "v1", fecha: "Hace 4 horas", autor: "Elena Marín", detalle: "🌱 Creación del documento base", esCorrecta: false }
+                        { version: "v4", fecha: "Hace 2 minutos", autor: "Sistema (Malware)", detalle: "Modificado y Cifrado por Ransomware", esCorrecta: false },
+                        { version: "v3", fecha: "Hace 5 minutos", autor: "Sistema (Malware)", detalle: "Modificado y Cifrado por Ransomware", esCorrecta: false },
+                        { version: "v2", fecha: "Hace 30 minutos", autor: "Elena Marín", detalle: "Modificación limpia - Estado original guardado", esCorrecta: true },
+                        { version: "v1", fecha: "Hace 4 horas", autor: "Elena Marín", detalle: "Creación del documento base", esCorrecta: false }
                     ],
                     explicacionExito: "¡Viaje en el tiempo completado! Demostraste el verdadero poder de la resiliencia en la nube. En lugar de ceder al chantaje del cibercrimen, auditaste los cambios y restauraste el archivo al estado exacto anterior al ataque, garantizando la continuidad de las operaciones de la institución."
                 }
