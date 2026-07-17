@@ -47,12 +47,18 @@
         
         <!-- CABECERA DE MANDOS -->
         <header class="flex flex-col md:flex-row justify-between items-center mb-12 border-b border-slate-800 pb-6 gap-4">
-            <div class="text-center md:text-left">
+            <div class="text-center md:text-left space-y-1">
                 <h1 class="text-4xl font-extrabold text-blue-500 tracking-tight mb-2">
                     🛡️ Centro de Simulación de Ciberseguridad
                 </h1>
                 <p class="text-slate-400 text-md">Transformando usuarios vulnerables en investigadores digitales</p>
-                <p id="user-display-tag" class="text-xs text-emerald-400 font-mono mt-1 font-semibold"></p>
+                
+                <!-- Contenedor de Estados en la Cabecera Superior -->
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-2">
+                    <p id="user-display-tag" class="text-xs text-emerald-400 font-mono font-semibold"></p>
+                    <!-- 🌟 ELEMENTO NUEVO: Indicador Global Único de Errores -->
+                    <span id="global-errors-tag" class="hidden text-[11px] bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2.5 py-0.5 rounded-full font-mono font-bold"></span>
+                </div>
             </div>
             
             <!-- CONTROLLER SANDBOX -->
@@ -83,7 +89,7 @@
                 </div>
 
                 <!-- Misión 02 -->
-                <div id="card-mision-2" class="bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between relative overflow-hidden cursor-not-allowed" onclick="cargarMision(2)">
+                <div id="card-mision-2" class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 opacity-60 flex flex-col justify-between relative overflow-hidden cursor-not-allowed" onclick="cargarMision(2)">
                     <div>
                         <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 02</span>
                         <h3 class="text-xl font-bold mt-3 text-slate-400">Cazadores de Phishing 🔒</h3>
@@ -120,7 +126,7 @@
             </div>
         </section>
 
-        <!-- SPRINT 3: ENTORNO DE TRABAJO CON BOTÓN FLOTANTE INTEGRADO (PLAN A) -->
+        <!-- SPRINT 3: ENTORNO DE TRABAJO CON BOTÓN FLOTANTE INTEGRADO -->
         <section id="panel-mision" class="hidden bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-xl relative pb-20">
             <div class="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
                 <h2 id="titulo-mision" class="text-2xl font-bold text-white"></h2>
@@ -173,14 +179,14 @@
         }
 
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFsoT_A7nQ-N4SINwTLbSmOtVc9Yv9SD1Y5ZVNUeHYzodEItXTpiePSXFp_7qeuYEc2w/exec";
-
         let estadoJuego = {
             usuario: { nombre: "", correo: "" },
             misionActual: null,
             ejercicioActualIndex: 0,
             varianteActiva: null,
-            misionesDesbloqueadas: [1], 
+            misionesDesbloqueadas: [1, 2], 
             modoLibreActivado: false,
+            fallosGlobales: 0, // 🌟 Rastreador maestro de fallos históricos cargados desde el Excel
             puntuacion: {
                 1: { puntos: 0, fallos: 0 },
                 2: { puntos: 0, fallos: 0 },
@@ -220,16 +226,12 @@
                 const resultado = await response.json();
                 
                 if (resultado.exists) {
-                    // 🌟 CORRECCIÓN EXTRA: Carga los datos históricos del Sheets directo en el estado local
                     estadoJuego.puntuacion[1].puntos = parseInt(resultado.m1) || 0;
                     estadoJuego.puntuacion[2].puntos = parseInt(resultado.m2) || 0;
-                    estadoJuego.puntuacion[1].fallos = parseInt(resultado.fallos1) || 0;
-                    estadoJuego.puntuacion[2].fallos = parseInt(resultado.fallos2) || 0;
+                    // 🌟 Carga directamente el acumulado total real en la variable maestra global
+                    estadoJuego.fallosGlobales = parseInt(resultado.fallosTotales) || 0;
                     
-                    if (!estadoJuego.misionesDesbloqueadas.includes(2)) {
-                        estadoJuego.misionesDesbloqueadas.push(2);
-                    }
-                    alert(`🔓 Historial recuperado para: ${resultado.nombre}. (M1: ${estadoJuego.puntuacion[1].puntos} | M2: ${estadoJuego.puntuacion[2].puntos})`);
+                    alert(`🔓 Historial recuperado para: ${resultado.nombre}. (M1: ${estadoJuego.puntuacion[1].puntos} | M2: ${estadoJuego.puntuacion[2].puntos} | Fallos Generales: ${estadoJuego.fallosGlobales})`);
                 }
                 concederAccesoLocal(inputNombre, inputCorreo);
             } catch (err) {
@@ -247,7 +249,6 @@
             actualizarInterfazMenu();
         }
 
-        // 🌟 CORRECCIÓN EXTRA: Parámetro 'silencioso' para actualizar base de datos en segundo plano sin interrumpir interfaz
         async function enviarResultadosASheet(silencioso = false) {
             const contenedor = document.getElementById('contenedor-ejercicio');
             
@@ -260,10 +261,11 @@
             }
 
             let puntosTotales = 0;
-            let fallosTotales = 0;
+            // Calcular los fallos de forma global (base histórica + lo acumulado en esta sesión activa)
+            let fallosTotales = estadoJuego.fallosGlobales + estadoJuego.puntuacion[1].fallos + estadoJuego.puntuacion[2].fallos;
+            
             for(let key in estadoJuego.puntuacion) {
                 puntosTotales += estadoJuego.puntuacion[key].puntos;
-                fallosTotales += estadoJuego.puntuacion[key].fallos;
             }
 
             const payload = {
@@ -286,7 +288,7 @@
                 });
                 
                 if (silencioso) {
-                    actualizarInterfazMenu(); // Actualiza los marcadores en vivo de la pantalla principal en segundo plano
+                    actualizarInterfazMenu(); 
                 } else {
                     contenedor.innerHTML = `
                         <div class="text-center py-8 space-y-4 animate-fade-in">
@@ -306,7 +308,7 @@
                         <div class="text-center py-8 space-y-4 animate-fade-in">
                             <div class="text-5xl">⚠️</div>
                             <h3 class="text-xl font-bold text-yellow-400">Progreso Guardado Localmente</h3>
-                            <p class="text-slate-300 max-w-md mx-auto text-xs">Guardado temporal local activo.</p>
+                            <p class="text-slate-300 max-w-md mx-auto text-xs">Guardado temporal local activo por interrupción de red.</p>
                             <button onclick="volverAlMenu()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-6 rounded-lg transition mt-4 cursor-pointer shadow-md">Regresar al Menú de Control</button>
                         </div>
                     `;
@@ -325,17 +327,12 @@
                 alert("🔒 Las misiones 3, 4 y 5 no están habilitadas para la dinámica de este Webinar.");
                 return;
             }
-            if (!estadoJuego.misionesDesbloqueadas.includes(idNumerico) && !estadoJuego.modoLibreActivado) {
-                alert("🔒 Operación Bloqueada. Completa la misión anterior.");
-                return;
-            }
             
             estadoJuego.misionActual = idNumerico;
             estadoJuego.ejercicioActualIndex = 0;
             
-            // 🌟 CORRECCIÓN EXTRA: Resetea el contador local al empezar la partida para que NO sume encima del historial anterior (Evita 8 en vez de 4)
+            // Los puntos de aciertos sí se limpian para poder resolver los 4 ejercicios desde cero
             estadoJuego.puntuacion[idNumerico].puntos = 0;
-            estadoJuego.puntuacion[idNumerico].fallos = 0;
             
             document.getElementById('menu-principal').classList.add('hidden');
             document.getElementById('panel-mision').classList.remove('hidden');
@@ -372,23 +369,23 @@
 
         function avanzarEjercicio() {
             estadoJuego.ejercicioActualIndex++;
-            // 🌟 CORRECCIÓN EXTRA: Apenas termina un ejercicio envía la telemetría en segundo plano
-            enviarResultadosASheet(true);
+            enviarResultadosASheet(true); 
             presentarEjercicio();
         }
 
         function finalizarMision() {
-            let misionIdActual = parseInt(estadoJuego.misionActual);
-            if (misionIdActual === 1) {
-                const siguienteMision = 2;
-                if (!estadoJuego.misionesDesbloqueadas.includes(siguienteMision)) {
-                    estadoJuego.misionesDesbloqueadas.push(siguienteMision);
-                }
-            }
-            enviarResultadosASheet(false); // Envío final formal
+            enviarResultadosASheet(false); 
         }
 
         function actualizarInterfazMenu() {
+            // 🌟 PARTE A: Renderizar dinámicamente el marcador de fallos globales en la cabecera superior
+            let totalFallosActuales = estadoJuego.fallosGlobales + estadoJuego.puntuacion[1].fallos + estadoJuego.puntuacion[2].fallos;
+            const errorTag = document.getElementById('global-errors-tag');
+            if (errorTag) {
+                errorTag.innerText = `⚠️ Fallos Acumulados: ${totalFallosActuales} Err`;
+                errorTag.classList.remove('hidden');
+            }
+
             for (let i = 1; i <= 2; i++) {
                 const tarjeta = document.getElementById(`card-mision-${i}`);
                 if (!tarjeta) continue;
@@ -411,14 +408,11 @@
                         tarjeta.querySelector('div').appendChild(contenedorInfo);
                     }
                     
+                    // 🌟 PARTE B: La tarjeta ahora solo muestra de forma limpia los aciertos ganados en esta actividad
                     contenedorInfo.innerHTML = `
                         <div class="flex justify-between items-center text-xs font-mono">
-                            <span class="text-slate-400">Rendimiento Técnico:</span>
-                            <span class="font-bold">
-                                <span class="text-emerald-400">⭐ ${estadoJuego.puntuacion[i].puntos} OK</span>
-                                <span class="text-slate-500 mx-1">|</span>
-                                <span class="text-rose-400">❌ ${estadoJuego.puntuacion[i].fallos} Err</span>
-                            </span>
+                            <span class="text-slate-400">Rendimiento Misión:</span>
+                            <span class="font-bold text-emerald-400">⭐ ${estadoJuego.puntuacion[i].puntos} Aciertos</span>
                         </div>
                     `;
                     
@@ -439,16 +433,6 @@
                         contenedorBotones.appendChild(btnMaterial);
                         tarjeta.appendChild(contenedorBotones);
                     }
-                } else {
-                    tarjeta.className = "bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between cursor-not-allowed";
-                    if (enc) {
-                        enc.innerHTML = enc.innerHTML.replace('🔓', '🔒');
-                        enc.className = "text-xl font-bold mt-3 text-slate-400";
-                    }
-                    const divBotones = tarjeta.querySelector('div.flex');
-                    if (divBotones) divBotones.remove();
-                    const metaInfo = tarjeta.querySelector('.mision-meta-container');
-                    if (metaInfo) metaInfo.remove();
                 }
             }
         }
