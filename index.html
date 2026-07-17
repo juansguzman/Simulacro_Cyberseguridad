@@ -91,30 +91,30 @@
                     </div>
                 </div>
 
-                <!-- Misión 03 -->
-                <div id="card-mision-3" class="bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between cursor-not-allowed" onclick="cargarMision(3)">
+                <!-- Misión 03 (Inactiva para este Webinar) -->
+                <div id="card-mision-3" class="bg-slate-950/40 opacity-40 cursor-not-allowed p-6 rounded-xl border border-slate-900 flex flex-col justify-between">
                     <div>
-                        <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 03</span>
-                        <h3 class="text-xl font-bold mt-3 text-slate-400">Túneles y Candados 🔒</h3>
-                        <p class="text-slate-500 text-sm mt-2">Cifrado de comunicaciones, validación de certificados SSL y protección en redes Wi-Fi públicas.</p>
+                        <span class="bg-slate-900 text-slate-500 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 03</span>
+                        <h3 class="text-xl font-bold mt-3 text-slate-600">Túneles y Candados 🚫 <span class="text-xs text-red-500 block font-normal mt-1">(No habilitada para este Webinar)</span></h3>
+                        <p class="text-slate-600 text-sm mt-2">Cifrado de comunicaciones, validación de certificados SSL y protección en redes Wi-Fi públicas.</p>
                     </div>
                 </div>
 
-                <!-- Misión 04 -->
-                <div id="card-mision-4" class="bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between cursor-not-allowed" onclick="cargarMision(4)">
+                <!-- Misión 04 (Inactiva para este Webinar) -->
+                <div id="card-mision-4" class="bg-slate-950/40 opacity-40 cursor-not-allowed p-6 rounded-xl border border-slate-900 flex flex-col justify-between">
                     <div>
-                        <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 04</span>
-                        <h3 class="text-xl font-bold mt-3 text-slate-400">Colaboración Segura 🔒</h3>
-                        <p class="text-slate-500 text-sm mt-2">Control de accesos y gestión del ciclo de vida del dato mediante enlaces dinámicos de OneDrive.</p>
+                        <span class="bg-slate-900 text-slate-500 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 04</span>
+                        <h3 class="text-xl font-bold mt-3 text-slate-600">Colaboración Segura 🚫 <span class="text-xs text-red-500 block font-normal mt-1">(No habilitada para este Webinar)</span></h3>
+                        <p class="text-slate-600 text-sm mt-2">Control de accesos y gestión del ciclo de vida del dato mediante enlaces dinámicos de OneDrive.</p>
                     </div>
                 </div>
 
-                <!-- Misión 05 -->
-                <div id="card-mision-5" class="bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between md:col-span-2 cursor-not-allowed" onclick="cargarMision(5)">
+                <!-- Misión 05 (Inactiva para este Webinar) -->
+                <div id="card-mision-5" class="bg-slate-950/40 opacity-40 cursor-not-allowed p-6 rounded-xl border border-slate-900 flex flex-col justify-between md:col-span-2">
                     <div>
-                        <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 05</span>
-                        <h3 class="text-xl font-bold mt-3 text-slate-400">IA con Ética y Seguridad 🔒</h3>
-                        <p class="text-slate-500 text-sm mt-2">Gobernanza de Inteligencia Artificial, anonimización de datos públicos y mitigación de fugas de información.</p>
+                        <span class="bg-slate-900 text-slate-500 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 05</span>
+                        <h3 class="text-xl font-bold mt-3 text-slate-600">IA con Ética y Seguridad 🚫 <span class="text-xs text-red-500 block font-normal mt-1">(No habilitada para este Webinar)</span></h3>
+                        <p class="text-slate-600 text-sm mt-2">Gobernanza de Inteligencia Artificial, anonimización de datos públicos y mitigación de fugas de información.</p>
                     </div>
                 </div>
             </div>
@@ -131,35 +131,28 @@
             
             <div id="contenedor-ejercicio"></div>
             
-            <!-- 🌟 WIDGET ASISTENTE FLOTANTE (PLAN A) — UBICADO EN LA ESQUINA INFERIOR DERECHA -->
+            <!-- WIDGET ASISTENTE FLOTANTE — UBICADO EN LA ESQUINA INFERIOR DERECHA -->
             <button onclick="abrirInstruccionesActividad()" class="absolute bottom-6 right-6 bg-blue-600 hover:bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold shadow-2xl cursor-pointer transition-all hover:scale-110 z-40 animate-pulse" title="Ver guía de la actividad">
                 ℹ️
             </button>
             
-            <!-- Tooltip Global de Rastreo de Enlaces -->
             <div id="url-tooltip" class="hidden absolute bg-black/95 text-yellow-400 text-xs border border-yellow-600 px-3 py-1.5 rounded-md shadow-lg font-mono z-50 pointer-events-none"></div>
         </section>
 
     </div>
 
-    <!-- MODAL UNIVERSAL: MATERIAL DE ESTUDIO E INSTRUCCIONES (Just-In-Time Learning) -->
+    <!-- MODAL UNIVERSAL: MATERIAL DE ESTUDIO E INSTRUCCIONES -->
     <div id="modal-estudio" class="fixed inset-0 bg-slate-950/80 z-50 hidden items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-700 max-w-2xl w-full max-h-[85vh] flex flex-col rounded-2xl shadow-2xl overflow-hidden animate-fade-in">
-            <!-- Encabezado del Modal -->
             <div class="bg-slate-800 p-5 border-b border-slate-700 flex justify-between items-center">
                 <h3 id="modal-estudio-titulo" class="text-xl font-bold text-blue-400 flex items-center gap-2">📖 Material de Referencia</h3>
                 <button onclick="cerrarModalEstudio()" class="text-slate-400 hover:text-white font-black text-sm p-1 cursor-pointer">✕ Cerrar</button>
             </div>
-            <!-- Cuerpo con Scroll Automático -->
-            <div id="modal-estudio-cuerpo" class="p-6 overflow-y-auto space-y-4 text-sm leading-relaxed text-slate-300">
-                <!-- Inyección reactiva desde JavaScript -->
-            </div>
+            <div id="modal-estudio-cuerpo" class="p-6 overflow-y-auto space-y-4 text-sm leading-relaxed text-slate-300"></div>
         </div>
     </div>
 
-    <!-- ========================================================
-         📦 IMPORTACIÓN ORDENADA DE LA ARQUITECTURA MODULAR
-         ======================================================== -->
+    <!-- 📦 IMPORTACIÓN ORDENADA DE LA ARQUITECTURA MODULAR -->
     <script src="preguntas.js"></script>
     <script src="material.js"></script>
     <script src="misiones/mision1.js"></script>
@@ -168,13 +161,8 @@
     <script src="misiones/mision4.js"></script>
     <script src="misiones/mision5.js"></script>
 
-    <!-- ========================================================
-         🕹️ NÚCLEO DE OPERACIONES DEL CORE SIMULADOR
-         ======================================================== -->
+    <!-- 🕹️ NÚCLEO DE OPERACIONES DEL CORE SIMULADOR -->
     <script>
-        // ========================================================
-        // 🎲 ALGORITMO DE SHUFFLE (BARAJADO AUTOMÁTICO)
-        // ========================================================
         function mezclarArray(array) {
             let copia = [...array];
             for (let i = copia.length - 1; i > 0; i--) {
@@ -184,10 +172,8 @@
             return copia;
         }
 
-        // CONFIGURACIÓN DEL TELEPORT DE APPS SCRIPT
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwMa7jUxRiHzFLTLHlN3z-VDgJxTbQGBnrKc7flwKrvnc9XIQfUDCLkY9MwKO5iWeujig/exec";
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFsoT_A7nQ-N4SINwTLbSmOtVc9Yv9SD1Y5ZVNUeHYzodEItXTpiePSXFp_7qeuYEc2w/exec";
 
-        // ESTADO DE TELEMETRÍA GLOBAL
         let estadoJuego = {
             usuario: { nombre: "", correo: "" },
             misionActual: null,
@@ -204,12 +190,9 @@
             }
         };
 
-        // Variables globales requeridas por los módulos distribuidos
         let m3Shields = { vpn: false, dns: false }; 
         let m4IntervaloReloj = null;
         let m5Escudos = { anonimo: false, seguro: false, filtrado: false };
-
-        // --- SISTEMAS DE COMUNICACIÓN CON SERVIDORES GOOGLE ---
         
         async function verificarAccAccess() {
             const inputNombre = document.getElementById('login-nombre').value.trim();
@@ -237,15 +220,20 @@
                 const resultado = await response.json();
                 
                 if (resultado.exists) {
-                    errorLabel.innerHTML = "❌ <strong>Acceso Denegado:</strong> Este correo ya completó la prueba o se encuentra registrado en la matriz.";
-                    errorLabel.classList.remove('hidden');
-                    submitBtn.innerText = "Ingresar al Centro de Mando";
-                    submitBtn.disabled = false;
-                } else {
-                    concederAccesoLocal(inputNombre, inputCorreo);
+                    // 🌟 CORRECCIÓN EXTRA: Carga los datos históricos del Sheets directo en el estado local
+                    estadoJuego.puntuacion[1].puntos = parseInt(resultado.m1) || 0;
+                    estadoJuego.puntuacion[2].puntos = parseInt(resultado.m2) || 0;
+                    estadoJuego.puntuacion[1].fallos = parseInt(resultado.fallos1) || 0;
+                    estadoJuego.puntuacion[2].fallos = parseInt(resultado.fallos2) || 0;
+                    
+                    if (!estadoJuego.misionesDesbloqueadas.includes(2)) {
+                        estadoJuego.misionesDesbloqueadas.push(2);
+                    }
+                    alert(`🔓 Historial recuperado para: ${resultado.nombre}. (M1: ${estadoJuego.puntuacion[1].puntos} | M2: ${estadoJuego.puntuacion[2].puntos})`);
                 }
+                concederAccesoLocal(inputNombre, inputCorreo);
             } catch (err) {
-                console.warn("Conexión remota inactiva o URL sin configurar. Iniciando Sandbox local preventivo.");
+                console.error("Conexión de sincronización remota inactiva. Abriendo sesión local.", err);
                 concederAccesoLocal(inputNombre, inputCorreo);
             }
         }
@@ -259,13 +247,17 @@
             actualizarInterfazMenu();
         }
 
-        async function enviarResultadosASheet() {
+        // 🌟 CORRECCIÓN EXTRA: Parámetro 'silencioso' para actualizar base de datos en segundo plano sin interrumpir interfaz
+        async function enviarResultadosASheet(silencioso = false) {
             const contenedor = document.getElementById('contenedor-ejercicio');
-            contenedor.innerHTML = `
-                <div class="text-center py-8 space-y-3">
-                    <div class="animate-spin text-3xl inline-block">⏳</div>
-                    <p class="text-sm text-slate-400 font-mono">Transmitiendo telemetría cifrada al servidor central...</p>
-                </div>`;
+            
+            if (!silencioso) {
+                contenedor.innerHTML = `
+                    <div class="text-center py-8 space-y-3">
+                        <div class="animate-spin text-3xl inline-block">⏳</div>
+                        <p class="text-sm text-slate-400 font-mono">Transmitiendo telemetría cifrada al servidor central...</p>
+                    </div>`;
+            }
 
             let puntosTotales = 0;
             let fallosTotales = 0;
@@ -281,9 +273,7 @@
                 puntajeGeneral: puntosTotales,
                 m1: estadoJuego.puntuacion[1].puntos,
                 m2: estadoJuego.puntuacion[2].puntos,
-                m3: estadoJuego.puntuacion[3].puntos,
-                m4: estadoJuego.puntuacion[4].puntos,
-                m5: estadoJuego.puntuacion[5].puntos,
+                m3: 0, m4: 0, m5: 0,
                 fallosTotales: fallosTotales
             };
 
@@ -295,27 +285,34 @@
                     body: JSON.stringify(payload)
                 });
                 
-                contenedor.innerHTML = `
-                    <div class="text-center py-8 space-y-4">
-                        <div class="text-5xl">✅</div>
-                        <h3 class="text-2xl font-bold text-emerald-400">¡Expediente Guardado Exitosamente!</h3>
-                        <p class="text-slate-300 max-w-md mx-auto text-sm">Tus métricas de resiliencia y gobernanza de ciberseguridad han sido inyectadas en la base de datos central de la institución. Ya puedes cerrar esta ventana de forma segura.</p>
-                    </div>
-                `;
+                if (silencioso) {
+                    actualizarInterfazMenu(); // Actualiza los marcadores en vivo de la pantalla principal en segundo plano
+                } else {
+                    contenedor.innerHTML = `
+                        <div class="text-center py-8 space-y-4 animate-fade-in">
+                            <div class="text-5xl">✅</div>
+                            <h3 class="text-2xl font-bold text-emerald-400">¡Misión Sincronizada con Éxito!</h3>
+                            <p class="text-slate-300 max-w-md mx-auto text-sm">Tu expediente técnico ha sido guardado de manera limpia en la nube gubernamental.</p>
+                            <button onclick="volverAlMenu()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-6 rounded-lg transition mt-4 cursor-pointer shadow-md">Regresar al Menú de Control</button>
+                        </div>
+                    `;
+                }
             } catch (err) {
-                console.error("Fallo de red al transmitir a Google Sheets:", err);
-                contenedor.innerHTML = `
-                    <div class="text-center py-8 space-y-4">
-                        <div class="text-5xl">⚠️</div>
-                        <h3 class="text-xl font-bold text-yellow-400">Error de Sincronización Remota</h3>
-                        <p class="text-slate-300 max-w-md mx-auto text-xs">No se pudo confirmar el guardado automático en el Apps Script. Por seguridad, toma una captura de pantalla de tus métricas técnicas abajo:</p>
-                        <pre class="bg-black text-[10px] p-4 text-left rounded-lg text-slate-400 overflow-x-auto max-w-md mx-auto font-mono">${JSON.stringify(payload, null, 2)}</pre>
-                    </div>
-                `;
+                console.error("Fallo de red al transmitir telemetría:", err);
+                if (silencioso) {
+                    actualizarInterfazMenu();
+                } else {
+                    contenedor.innerHTML = `
+                        <div class="text-center py-8 space-y-4 animate-fade-in">
+                            <div class="text-5xl">⚠️</div>
+                            <h3 class="text-xl font-bold text-yellow-400">Progreso Guardado Localmente</h3>
+                            <p class="text-slate-300 max-w-md mx-auto text-xs">Guardado temporal local activo.</p>
+                            <button onclick="volverAlMenu()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-6 rounded-lg transition mt-4 cursor-pointer shadow-md">Regresar al Menú de Control</button>
+                        </div>
+                    `;
+                }
             }
         }
-
-        // --- SISTEMAS INTERNOS DE ENRUTAMIENTO Y NAVEGACIÓN ---
 
         function alternarModoLibre(estaChequeado) {
             estadoJuego.modoLibreActivado = estaChequeado;
@@ -324,26 +321,31 @@
 
         function cargarMision(id) {
             let idNumerico = parseInt(id);
+            if (idNumerico > 2) {
+                alert("🔒 Las misiones 3, 4 y 5 no están habilitadas para la dinámica de este Webinar.");
+                return;
+            }
             if (!estadoJuego.misionesDesbloqueadas.includes(idNumerico) && !estadoJuego.modoLibreActivado) {
-                alert("🔒 Operación Bloqueada. Completa las misiones anteriores o activa el 'Modo Sandbox' en la cabecera.");
+                alert("🔒 Operación Bloqueada. Completa la misión anterior.");
                 return;
             }
             
             estadoJuego.misionActual = idNumerico;
             estadoJuego.ejercicioActualIndex = 0;
             
-            m3Shields = { vpn: false, dns: false };
-            if (m4IntervaloReloj) clearInterval(m4IntervaloReloj);
+            // 🌟 CORRECCIÓN EXTRA: Resetea el contador local al empezar la partida para que NO sume encima del historial anterior (Evita 8 en vez de 4)
+            estadoJuego.puntuacion[idNumerico].puntos = 0;
+            estadoJuego.puntuacion[idNumerico].fallos = 0;
             
             document.getElementById('menu-principal').classList.add('hidden');
             document.getElementById('panel-mision').classList.remove('hidden');
             document.getElementById('titulo-mision').innerText = `Misión ${idNumerico}: Operación en Curso`;
             
             presentarEjercicio();
+            actualizarInterfazMenu();
         }
 
         function volverAlMenu() {
-            if (m4IntervaloReloj) clearInterval(m4IntervaloReloj);
             document.getElementById('panel-mision').classList.add('hidden');
             document.getElementById('menu-principal').classList.remove('hidden');
             actualizarInterfazMenu();
@@ -351,7 +353,6 @@
 
         function presentarEjercicio() {
             const listaEjercicios = bancoPreguntas[estadoJuego.misionActual];
-            
             if (!listaEjercicios || estadoJuego.ejercicioActualIndex >= listaEjercicios.length) {
                 finalizarMision();
                 return;
@@ -367,42 +368,28 @@
             
             if (misionId === 1) renderizarMision1(ejercicio, variante, contenedor);
             else if (misionId === 2) renderizarMision2(ejercicio, variante, contenedor);
-            else if (misionId === 3) renderizarMision3(ejercicio, variante, contenedor);
-            else if (misionId === 4) renderizarMision4(ejercicio, variante, contenedor);
-            else if (misionId === 5) renderizarMision5(ejercicio, variante, contenedor);
         }
 
         function avanzarEjercicio() {
             estadoJuego.ejercicioActualIndex++;
+            // 🌟 CORRECCIÓN EXTRA: Apenas termina un ejercicio envía la telemetría en segundo plano
+            enviarResultadosASheet(true);
             presentarEjercicio();
         }
 
         function finalizarMision() {
             let misionIdActual = parseInt(estadoJuego.misionActual);
-            
-            if (misionIdActual === 5) {
-                enviarResultadosASheet();
-                return;
+            if (misionIdActual === 1) {
+                const siguienteMision = 2;
+                if (!estadoJuego.misionesDesbloqueadas.includes(siguienteMision)) {
+                    estadoJuego.misionesDesbloqueadas.push(siguienteMision);
+                }
             }
-
-            const siguienteMision = misionIdActual + 1;
-            if (siguienteMision <= 5 && !estadoJuego.misionesDesbloqueadas.includes(siguienteMision)) {
-                estadoJuego.misionesDesbloqueadas.push(siguienteMision);
-            }
-
-            const contenedor = document.getElementById('contenedor-ejercicio');
-            contenedor.innerHTML = `
-                <div class="text-center py-8 space-y-4 animate-fade-in">
-                    <div class="text-5xl">🏆</div>
-                    <h3 class="text-2xl font-bold text-emerald-400">¡Misión Completada Exitosamente!</h3>
-                    <p class="text-slate-300 max-w-md mx-auto text-sm">Has resuelto todas las anomalías de este sector operativo de la organización. El sistema ha desbloqueado la siguiente operación en tu panel central.</p>
-                    <button onclick="volverAlMenu()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-6 rounded-lg transition mt-4 cursor-pointer shadow-md">Regresar a la Central de Operaciones</button>
-                </div>
-            `;
+            enviarResultadosASheet(false); // Envío final formal
         }
 
         function actualizarInterfazMenu() {
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 2; i++) {
                 const tarjeta = document.getElementById(`card-mision-${i}`);
                 if (!tarjeta) continue;
 
@@ -410,21 +397,37 @@
                 const enc = tarjeta.querySelector('h3');
 
                 if (estaDesbloqueada) {
-                    tarjeta.classList.remove('opacity-60', 'cursor-not-allowed', 'bg-slate-800/50', 'border-slate-800', 'border-slate-700');
-                    tarjeta.classList.add('bg-slate-800', 'cursor-pointer', 'border-blue-500/20', 'hover:border-blue-500', 'opacity-100');
+                    tarjeta.className = "bg-slate-800 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500 opacity-100 flex flex-col justify-between cursor-pointer transition";
                     
                     if (enc) {
                         enc.innerHTML = enc.innerHTML.replace('🔒', '🔓');
-                        enc.classList.remove('text-slate-400');
-                        enc.classList.add('text-white');
+                        enc.className = "text-xl font-bold mt-3 text-white";
                     }
                     
-                    if (!tarjeta.querySelector('button')) {
+                    let contenedorInfo = tarjeta.querySelector('.mision-meta-container');
+                    if (!contenedorInfo) {
+                        contenedorInfo = document.createElement('div');
+                        contenedorInfo.className = "mision-meta-container mt-4 border-t border-slate-700/50 pt-3 flex flex-col gap-2";
+                        tarjeta.querySelector('div').appendChild(contenedorInfo);
+                    }
+                    
+                    contenedorInfo.innerHTML = `
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-slate-400">Rendimiento Técnico:</span>
+                            <span class="font-bold">
+                                <span class="text-emerald-400">⭐ ${estadoJuego.puntuacion[i].puntos} OK</span>
+                                <span class="text-slate-500 mx-1">|</span>
+                                <span class="text-rose-400">❌ ${estadoJuego.puntuacion[i].fallos} Err</span>
+                            </span>
+                        </div>
+                    `;
+                    
+                    if (!tarjeta.querySelector('.btn-mision-start')) {
                         const contenedorBotones = document.createElement('div');
-                        contenedorBotones.className = "flex gap-2 mt-6 w-full";
+                        contenedorBotones.className = "flex gap-2 mt-4 w-full";
 
                         const btnMision = document.createElement('button');
-                        btnMision.className = "bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg transition text-sm cursor-pointer shadow-md flex-1";
+                        btnMision.className = "btn-mision-start bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg transition text-sm cursor-pointer shadow-md flex-1";
                         btnMision.innerText = "Iniciar Misión";
                         
                         const btnMaterial = document.createElement('button');
@@ -437,27 +440,21 @@
                         tarjeta.appendChild(contenedorBotones);
                     }
                 } else {
-                    tarjeta.classList.remove('bg-slate-800', 'cursor-pointer', 'border-blue-500/20', 'hover:border-blue-500', 'opacity-100');
-                    tarjeta.classList.add('bg-slate-800/50', 'opacity-60', 'cursor-not-allowed', 'border-slate-800');
-                    
+                    tarjeta.className = "bg-slate-800/50 p-6 rounded-xl border border-slate-800 opacity-60 flex flex-col justify-between cursor-not-allowed";
                     if (enc) {
                         enc.innerHTML = enc.innerHTML.replace('🔓', '🔒');
-                        enc.classList.add('text-slate-400');
-                        enc.classList.remove('text-white');
+                        enc.className = "text-xl font-bold mt-3 text-slate-400";
                     }
                     const divBotones = tarjeta.querySelector('div.flex');
                     if (divBotones) divBotones.remove();
-                    const btnViejo = tarjeta.querySelector('button');
-                    if (btnViejo) btnViejo.remove();
+                    const metaInfo = tarjeta.querySelector('.mision-meta-container');
+                    if (metaInfo) metaInfo.remove();
                 }
             }
         }
 
-        // --- SISTEMA FLOTANTE DE ACCESO AL CONOCIMIENTO (MODAL CONTROL) ---
-
         function abrirMaterialEstudio(misionId, event) {
             if (event) event.stopPropagation(); 
-            
             const info = materialEstudio[misionId];
             if (!info) return;
 
@@ -474,7 +471,6 @@
                     </div>
                 </div>
             `;
-
             const modal = document.getElementById('modal-estudio');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -488,13 +484,9 @@
 
         window.onclick = function(event) {
             const modal = document.getElementById('modal-estudio');
-            if (event.target === modal) {
-                cerrarModalEstudio();
-            }
+            if (event.target === modal) cerrarModalEstudio();
         }
 
-        // --- ENRUTADOR DINÁMICO DE GUÍAS PROCEDIMENTALES (BOTÓN EN ESQUINA INFERIOR DERECHA) ---
-        
         function abrirInstruccionesActividad() {
             const misionId = parseInt(estadoJuego.misionActual);
             const listaEjercicios = bancoPreguntas[misionId];
@@ -504,7 +496,6 @@
             if (!ejercicio) return;
 
             let instruccionesHtml = "";
-
             if (misionId === 1) {
                 instruccionesHtml = `
                     <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Auditoría de Credenciales Estatales</p>
@@ -524,57 +515,6 @@
                         <li>Elige tu veredicto inicial (Seguro o Phishing). Si confirmas que es un ataque, se abrirá el <strong>Laboratorio del Investigador</strong>: marca las casillas con las evidencias detectadas y pulsa 'Verificar Análisis Técnico' para enviar tu reporte.</li>
                     </ol>
                 `;
-            } else if (misionId === 3) {
-                instruccionesHtml = `
-                    <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Blindaje de Redes y Tráfico de Datos</p>
-                    <ol class="list-decimal pl-5 space-y-2">
-                        <li>Observa la consola del <strong>Live Packet Inspector (Wireshark)</strong>. Si la red es insegura, tus datos viajarán expuestos en texto plano (color rojo).</li>
-                        <li>Utiliza los interruptores físicos de la tarjeta izquierda (Hardware Toggles) para encender la <strong>VPN Institucional</strong> y el <strong>DNS Criptográfico</strong>. Observa cómo el tráfico se cifra en caliente y el candado de la URL se cierra.</li>
-                        <li>Con los escudos encendidos, lee las casillas inferiores, selecciona las acciones correctas para tu plan de remediación y pulsa <strong>'Emitir Certificado de Conexión Segura'</strong> para validar el envío.</li>
-                    </ol>
-                `;
-            } else if (misionId === 4) {
-                const tipo = ejercicio.tipo || ejercicio.type;
-                if (tipo === "configurador") {
-                    instruccionesHtml = `
-                        <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Control de Privilegios en la Nube (OneDrive)</p>
-                        <ol class="list-decimal pl-5 space-y-2">
-                            <li>Revisa el archivo y el tipo de destinatario externo que solicita la información en el expediente superior.</li>
-                            <li>Modifica el <strong>Nivel de Acceso</strong> en el menú desplegable (Editar o Solo Lectura).</li>
-                            <li>Configura los candados de la caja fuerte activando o desactivando las casillas físicas de protección (Bloquear descarga local, Contraseña y Caducidad) para aplicar el principio de mínimo privilegio.</li>
-                            <li>Haz clic en <strong>'Generar Enlace Corporativo Seguro'</strong> para concluir el envío de la directriz.</li>
-                        </ol>
-                    `;
-                } else if (tipo === "temporizador") {
-                    instruccionesHtml = `
-                        <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Contención Inmediata de Incidentes Bajo Estrés</p>
-                        <ol class="list-decimal pl-5 space-y-2">
-                            <li>¡Emergencia en progreso! Lee con rapidez el expediente del archivo comprometido en el panel rojo.</li>
-                            <li>Analiza las tres opciones de mitigación disponibles antes de que el temporizador circular de pánico llegue a cero.</li>
-                            <li>Haz clic sobre la opción que represente la <strong>única solución técnica real</strong> capaz de romper el token de red del enlace filtrado para neutralizar el incidente.</li>
-                        </ol>
-                    `;
-                } else if (tipo === "versiones") {
-                    instruccionesHtml = `
-                        <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Resiliencia Operativa ante Ataques de Ransomware</p>
-                        <ol class="list-decimal pl-5 space-y-2">
-                            <li>Lee los detalles del ataque criptográfico que ha infectado el servidor compartido local.</li>
-                            <li>Inspecciona la tabla del <strong>Historial de Versiones en la Nube</strong>. Evalúa de forma cronológica las marcas de tiempo, los autores de los cambios y el estado técnico de los archivos.</li>
-                            <li>Identifica la última versión limpia, íntegra y libre de secuestro resguardada antes del incidente.</li>
-                            <li>Haz clic en el botón azul de <strong>'Restaurar'</strong> en el extremo derecho de la fila correcta para recuperar el control de las operaciones estatales.</li>
-                        </ol>
-                    `;
-                }
-            } else if (misionId === 5) {
-                instruccionesHtml = `
-                    <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Sanitización y Gobernanza de Inteligencia Artificial</p>
-                    <ol class="list-decimal pl-5 space-y-2">
-                        <li>Audita el <strong>Prompt Original</strong> expuesto en la ventana del chatbot a la derecha.</li>
-                        <li>Detecta si el texto contiene Datos de Identificación Personal (PII) o brechas logísticas y financieras restringidas.</li>
-                        <li>Utiliza los conmutadores de la izquierda (Filtros de Seguridad) para activar las políticas DLP. Verás cómo el software ofusca el texto en caliente y cómo el banner migra hacia una instancia blindada.</li>
-                        <li>Una vez que alcances la combinación exacta de filtros (sin exponer secretos ni sobre-sanitizar contexto útil), haz clic en <strong>'Procesar en IA Seguro'</strong> para formalizar el envío normativo.</li>
-                    </ol>
-                `;
             }
 
             document.getElementById('modal-estudio-titulo').innerHTML = `ℹ️ Guía Operativa — Misión ${misionId}`;
@@ -583,13 +523,8 @@
                     <div class="bg-slate-950 border border-slate-800 p-5 rounded-xl leading-relaxed text-slate-300 text-sm">
                         ${instruccionesHtml}
                     </div>
-                    <div class="text-xs text-slate-400 bg-blue-600/5 p-3 rounded-lg border border-blue-500/10 flex items-center gap-2">
-                        <span>💡</span>
-                        <p><strong>Consejo del Investigador:</strong> Si necesitas repasar las reglas técnicas de este módulo, regresa al Menú Principal en cualquier momento y haz clic en el botón <strong>'📖 Ver Teoría'</strong>.</p>
-                    </div>
                 </div>
             `;
-
             const modal = document.getElementById('modal-estudio');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
