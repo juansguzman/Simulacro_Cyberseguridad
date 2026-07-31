@@ -56,12 +56,12 @@
                 <!-- Contenedor de Estados en la Cabecera Superior -->
                 <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-2">
                     <p id="user-display-tag" class="text-xs text-emerald-400 font-mono font-semibold"></p>
-                    <!-- 🌟 ELEMENTO NUEVO: Indicador Global Único de Errores -->
+                    <!-- Indicador Global Único de Errores -->
                     <span id="global-errors-tag" class="hidden text-[11px] bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2.5 py-0.5 rounded-full font-mono font-bold"></span>
                 </div>
             </div>
             
-            <!-- CONTROLLER SANDBOX -->
+            <!-- CONTROLLER SANDBOX CONFIGURADO COMO HIDDEN -->
             <div class="hidden bg-slate-800 border border-slate-700 rounded-xl p-3 flex items-center space-x-3 shadow-md">
                 <label class="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" id="dev-mode-toggle" class="sr-only peer" onchange="alternarModoLibre(this.checked)">
@@ -80,7 +80,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Misión 01 -->
-                <div id="card-mision-1" class="bg-slate-800 p-6 rounded-xl border border-slate-700 opacity-60 flex flex-col justify-between" onclick="cargarMision(1)">
+                <div id="card-mision-1" class="bg-slate-800 p-6 rounded-xl border border-slate-700 opacity-60 flex flex-col justify-between">
                     <div>
                         <span class="bg-blue-500/10 text-blue-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 01</span>
                         <h3 class="text-xl font-bold mt-3 text-slate-400">Fortalezas Digitales 🔒</h3>
@@ -89,7 +89,7 @@
                 </div>
 
                 <!-- Misión 02 -->
-                <div id="card-mision-2" class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 opacity-60 flex flex-col justify-between relative overflow-hidden cursor-not-allowed" onclick="cargarMision(2)">
+                <div id="card-mision-2" class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 opacity-60 flex flex-col justify-between relative overflow-hidden">
                     <div>
                         <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 02</span>
                         <h3 class="text-xl font-bold mt-3 text-slate-400">Cazadores de Phishing 🔒</h3>
@@ -97,29 +97,29 @@
                     </div>
                 </div>
 
-                <!-- Misión 03 (Inactiva para este Webinar) -->
-                <div id="card-mision-3" class="bg-slate-950/40 opacity-40 cursor-not-allowed p-6 rounded-xl border border-slate-900 flex flex-col justify-between">
+                <!-- Misión 03 -->
+                <div id="card-mision-3" class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 opacity-60 flex flex-col justify-between relative overflow-hidden">
                     <div>
-                        <span class="bg-slate-900 text-slate-500 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 03</span>
-                        <h3 class="text-xl font-bold mt-3 text-slate-600">Túneles y Candados 🚫 <span class="text-xs text-red-500 block font-normal mt-1">(No habilitada para este Webinar)</span></h3>
-                        <p class="text-slate-600 text-sm mt-2">Cifrado de comunicaciones, validación de certificados SSL y protección en redes Wi-Fi públicas.</p>
+                        <span class="bg-slate-700 text-slate-400 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 03</span>
+                        <h3 class="text-xl font-bold mt-3 text-slate-400">Túneles y Candados 🔒</h3>
+                        <p class="text-slate-500 text-sm mt-2">Cifrado de comunicaciones, validación de certificados SSL y protección en redes Wi-Fi públicas.</p>
                     </div>
                 </div>
 
-                <!-- Misión 04 (Inactiva para este Webinar) -->
-                <div id="card-mision-4" class="bg-slate-950/40 opacity-40 cursor-not-allowed p-6 rounded-xl border border-slate-900 flex flex-col justify-between">
+                <!-- Misión 04 -->
+                <div id="card-mision-4" class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 opacity-60 flex flex-col justify-between relative overflow-hidden">
                     <div>
                         <span class="bg-slate-900 text-slate-500 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 04</span>
-                        <h3 class="text-xl font-bold mt-3 text-slate-600">Colaboración Segura 🚫 <span class="text-xs text-red-500 block font-normal mt-1">(No habilitada para este Webinar)</span></h3>
+                        <h3 class="text-xl font-bold mt-3 text-slate-400">Colaboración Segura 🔒</h3>
                         <p class="text-slate-600 text-sm mt-2">Control de accesos y gestión del ciclo de vida del dato mediante enlaces dinámicos de OneDrive.</p>
                     </div>
                 </div>
 
-                <!-- Misión 05 (Inactiva para este Webinar) -->
-                <div id="card-mision-5" class="bg-slate-950/40 opacity-40 cursor-not-allowed p-6 rounded-xl border border-slate-900 flex flex-col justify-between md:col-span-2">
+                <!-- Misión 05 -->
+                <div id="card-mision-5" class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 opacity-60 flex flex-col justify-between relative overflow-hidden md:col-span-2">
                     <div>
                         <span class="bg-slate-900 text-slate-500 text-xs px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider">Misión 05</span>
-                        <h3 class="text-xl font-bold mt-3 text-slate-600">IA con Ética y Seguridad 🚫 <span class="text-xs text-red-500 block font-normal mt-1">(No habilitada para este Webinar)</span></h3>
+                        <h3 class="text-xl font-bold mt-3 text-slate-400">IA con Ética y Seguridad 🔒</h3>
                         <p class="text-slate-600 text-sm mt-2">Gobernanza de Inteligencia Artificial, anonimización de datos públicos y mitigación de fugas de información.</p>
                     </div>
                 </div>
@@ -178,15 +178,15 @@
             return copia;
         }
 
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFsoT_A7nQ-N4SINwTLbSmOtVc9Yv9SD1Y5ZVNUeHYzodEItXTpiePSXFp_7qeuYEc2w/exec";
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPaWGxfw5_e6xcCjzVSnDmjlaji1lAQALiU7CH0x5Brazk-eLqQXfukZDg9gqzKmjsTQ/exec";
         let estadoJuego = {
             usuario: { nombre: "", correo: "" },
             misionActual: null,
             ejercicioActualIndex: 0,
             varianteActiva: null,
-            misionesDesbloqueadas: [1, 2], 
+            misionesDesbloqueadas: [1, 2, 3, 4, 5], // 🌟 Activadas lógicamente las 5 misiones nativas
             modoLibreActivado: false,
-            fallosGlobales: 0, // 🌟 Rastreador maestro de fallos históricos cargados desde el Excel
+            fallosGlobales: 0, 
             puntuacion: {
                 1: { puntos: 0, fallos: 0 },
                 2: { puntos: 0, fallos: 0 },
@@ -226,12 +226,15 @@
                 const resultado = await response.json();
                 
                 if (resultado.exists) {
+                    // 🌟 Recuperación total del historial expandido (M1 a M5)
                     estadoJuego.puntuacion[1].puntos = parseInt(resultado.m1) || 0;
                     estadoJuego.puntuacion[2].puntos = parseInt(resultado.m2) || 0;
-                    // 🌟 Carga directamente el acumulado total real en la variable maestra global
+                    estadoJuego.puntuacion[3].puntos = parseInt(resultado.m3) || 0;
+                    estadoJuego.puntuacion[4].puntos = parseInt(resultado.m4) || 0;
+                    estadoJuego.puntuacion[5].puntos = parseInt(resultado.m5) || 0;
                     estadoJuego.fallosGlobales = parseInt(resultado.fallosTotales) || 0;
                     
-                    alert(`🔓 Historial recuperado para: ${resultado.nombre}. (M1: ${estadoJuego.puntuacion[1].puntos} | M2: ${estadoJuego.puntuacion[2].puntos} | Fallos Generales: ${estadoJuego.fallosGlobales})`);
+                    alert(`🔓 Historial recuperado para: ${resultado.nombre}. (M1: ${estadoJuego.puntuacion[1].puntos} | M2: ${estadoJuego.puntuacion[2].puntos} | M3: ${estadoJuego.puntuacion[3].puntos} | M4: ${estadoJuego.puntuacion[4].puntos} | M5: ${estadoJuego.puntuacion[5].puntos} | Fallos Generales: ${estadoJuego.fallosGlobales})`);
                 }
                 concederAccesoLocal(inputNombre, inputCorreo);
             } catch (err) {
@@ -261,13 +264,19 @@
             }
 
             let puntosTotales = 0;
-            // Calcular los fallos de forma global (base histórica + lo acumulado en esta sesión activa)
-            let fallosTotales = estadoJuego.fallosGlobales + estadoJuego.puntuacion[1].fallos + estadoJuego.puntuacion[2].fallos;
+            // 🌟 Sumar la matriz completa de fallos acumulados en la sesión activa de las 5 misiones
+            let fallosTotales = estadoJuego.fallosGlobales + 
+                                estadoJuego.puntuacion[1].fallos + 
+                                estadoJuego.puntuacion[2].fallos +
+                                estadoJuego.puntuacion[3].fallos +
+                                estadoJuego.puntuacion[4].fallos +
+                                estadoJuego.puntuacion[5].fallos;
             
             for(let key in estadoJuego.puntuacion) {
                 puntosTotales += estadoJuego.puntuacion[key].puntos;
             }
 
+            // 🌟 Payload estructurado enviando el desempeño total (M1 - M5)
             const payload = {
                 action: "submitScore",
                 nombre: estadoJuego.usuario.nombre,
@@ -275,7 +284,9 @@
                 puntajeGeneral: puntosTotales,
                 m1: estadoJuego.puntuacion[1].puntos,
                 m2: estadoJuego.puntuacion[2].puntos,
-                m3: 0, m4: 0, m5: 0,
+                m3: estadoJuego.puntuacion[3].puntos,
+                m4: estadoJuego.puntuacion[4].puntos,
+                m5: estadoJuego.puntuacion[5].puntos,
                 fallosTotales: fallosTotales
             };
 
@@ -323,15 +334,11 @@
 
         function cargarMision(id) {
             let idNumerico = parseInt(id);
-            if (idNumerico > 2) {
-                alert("🔒 Las misiones 3, 4 y 5 no están habilitadas para la dinámica de este Webinar.");
-                return;
-            }
             
             estadoJuego.misionActual = idNumerico;
             estadoJuego.ejercicioActualIndex = 0;
             
-            // Los puntos de aciertos sí se limpian para poder resolver los 4 ejercicios desde cero
+            // Los aciertos locales se limpian al iniciar la partida para evitar duplicaciones
             estadoJuego.puntuacion[idNumerico].puntos = 0;
             
             document.getElementById('menu-principal').classList.add('hidden');
@@ -343,6 +350,7 @@
         }
 
         function volverAlMenu() {
+            if (m4IntervaloReloj) clearInterval(m4IntervaloReloj);
             document.getElementById('panel-mision').classList.add('hidden');
             document.getElementById('menu-principal').classList.remove('hidden');
             actualizarInterfazMenu();
@@ -365,6 +373,9 @@
             
             if (misionId === 1) renderizarMision1(ejercicio, variante, contenedor);
             else if (misionId === 2) renderizarMision2(ejercicio, variante, contenedor);
+            else if (misionId === 3) renderizarMision3(ejercicio, variante, contenedor);
+            else if (misionId === 4) renderizarMision4(ejercicio, variante, contenedor);
+            else if (misionId === 5) renderizarMision5(ejercicio, variante, contenedor);
         }
 
         function avanzarEjercicio() {
@@ -378,15 +389,21 @@
         }
 
         function actualizarInterfazMenu() {
-            // 🌟 PARTE A: Renderizar dinámicamente el marcador de fallos globales en la cabecera superior
-            let totalFallosActuales = estadoJuego.fallosGlobales + estadoJuego.puntuacion[1].fallos + estadoJuego.puntuacion[2].fallos;
+            // 🌟 PARTE A: Renderizar dinámicamente el marcador agregando los fallos de las 5 misiones activas
+            let totalFallosActuales = estadoJuego.fallosGlobales + 
+                                      estadoJuego.puntuacion[1].fallos + 
+                                      estadoJuego.puntuacion[2].fallos +
+                                      estadoJuego.puntuacion[3].fallos +
+                                      estadoJuego.puntuacion[4].fallos +
+                                      estadoJuego.puntuacion[5].fallos;
             const errorTag = document.getElementById('global-errors-tag');
             if (errorTag) {
                 errorTag.innerText = `⚠️ Fallos Acumulados: ${totalFallosActuales} Err`;
                 errorTag.classList.remove('hidden');
             }
 
-            for (let i = 1; i <= 2; i++) {
+            // 🌟 Bucle expandido de 1 a 5 para renderizar todas las tarjetas operativas en paralelo
+            for (let i = 1; i <= 5; i++) {
                 const tarjeta = document.getElementById(`card-mision-${i}`);
                 if (!tarjeta) continue;
 
@@ -394,10 +411,10 @@
                 const enc = tarjeta.querySelector('h3');
 
                 if (estaDesbloqueada) {
-                    tarjeta.className = "bg-slate-800 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500 opacity-100 flex flex-col justify-between cursor-pointer transition";
+                    tarjeta.className = "bg-slate-800 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500 opacity-100 flex flex-col justify-between transition";
                     
                     if (enc) {
-                        enc.innerHTML = enc.innerHTML.replace('🔒', '🔓');
+                        enc.innerHTML = enc.innerHTML.replace('🔒', '🔓').replace('🚫 ', '');
                         enc.className = "text-xl font-bold mt-3 text-white";
                     }
                     
@@ -408,7 +425,7 @@
                         tarjeta.querySelector('div').appendChild(contenedorInfo);
                     }
                     
-                    // 🌟 PARTE B: La tarjeta ahora solo muestra de forma limpia los aciertos ganados en esta actividad
+                    // La tarjeta muestra de forma limpia los aciertos ganados en esta actividad
                     contenedorInfo.innerHTML = `
                         <div class="flex justify-between items-center text-xs font-mono">
                             <span class="text-slate-400">Rendimiento Misión:</span>
@@ -420,9 +437,11 @@
                         const contenedorBotones = document.createElement('div');
                         contenedorBotones.className = "flex gap-2 mt-4 w-full";
 
+                        // Botón dinámico con inyección directa del onclick para evitar problemas de propagación
                         const btnMision = document.createElement('button');
                         btnMision.className = "btn-mision-start bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg transition text-sm cursor-pointer shadow-md flex-1";
                         btnMision.innerText = "Iniciar Misión";
+                        btnMision.setAttribute('onclick', `cargarMision(${i})`);
                         
                         const btnMaterial = document.createElement('button');
                         btnMaterial.className = "bg-slate-700 hover:bg-slate-600 text-slate-300 border border-slate-600 font-medium py-2 px-3 rounded-lg transition text-sm cursor-pointer shadow-md";
@@ -493,10 +512,36 @@
                 instruccionesHtml = `
                     <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Triaje Forense de Mensajes de Correo</p>
                     <ol class="list-decimal pl-5 space-y-2">
-                        <li>Inspecciona la bandeja de entrada: revisa anomalías ortográficas en el remitente o disparadores de urgencia en el asunto.</li>
-                        <li>Pasa el cursor sobre los enlaces activos del correo para activar el <strong>Ojo de Halcón</strong> y leer la URL real en el cuadro flotante.</li>
-                        <li>Haz clic en el botón gris de <strong>Cabeceras Técnicas</strong> para evaluar el estado criptográfico de las firmas SPF y DKIM.</li>
-                        <li>Elige tu veredicto inicial (Seguro o Phishing). Si confirmas que es un ataque, se abrirá el <strong>Laboratorio del Investigador</strong>: marca las casillas con las evidencias detectadas y pulsa 'Verificar Análisis Técnico' para enviar tu reporte.</li>
+                        <li>Inspecciona la bandeja de entrada: revisa anomalías sutiles u ortográficas en el remitente o urgencia en el asunto.</li>
+                        <li>Pasa el cursor sobre los enlaces activos del correo para activar el <strong>Ojo de Halcón</strong> y leer la URL real.</li>
+                        <li>Haz clic en el botón de <strong>Cabeceras Técnicas</strong> para evaluar el estado criptográfico de las firmas SPF y DKIM.</li>
+                        <li>Elige tu veredicto inicial (Seguro o Phishing). Si confirmas ataque, marca las evidencias en el panel de reporte.</li>
+                    </ol>
+                `;
+            } else if (misionId === 3) {
+                instruccionesHtml = `
+                    <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Blindaje de Redes y Tráfico de Datos</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li>Observa el <strong>Live Packet Inspector (Wireshark)</strong>. Si la red es insegura, tus datos viajarán expuestos en texto plano (color rojo).</li>
+                        <li>Utiliza los interruptores físicos para encender la <strong>VPN Institucional</strong> y el <strong>DNS Criptográfico</strong>. Observa cómo el tráfico se cifra en caliente.</li>
+                        <li>Con los escudos encendidos, selecciona las acciones correctas para tu plan de remediación abajo y pulsa <strong>'Emitir Certificado'</strong>.</li>
+                    </ol>
+                `;
+            } else if (misionId === 4) {
+                instruccionesHtml = `
+                    <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Gestión y Resiliencia del Dato Corporativo</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li><strong>Modo OneDrive:</strong> Configura el nivel de acceso (Lectura/Edición) y los candados de protección (Contraseña, Caducidad, Bloquear descarga) según el destinatario.</li>
+                        <li><strong>Modo SOS/Ransomware:</strong> Identifica la acción técnica exacta para contener filtraciones o restaurar de raíz una versión limpia desde la tabla cronológica de cambios en la nube.</li>
+                    </ol>
+                `;
+            } else if (misionId === 5) {
+                instruccionesHtml = `
+                    <p class="font-semibold text-blue-400 mb-2">🎯 Objetivo: Sanitización y Gobernanza de Inteligencia Artificial</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li>Audita el <strong>Prompt Original</strong> expuesto en la ventana del chatbot de la derecha para detectar Datos de Identificación Personal (PII) o brechas restringidas.</li>
+                        <li>Utiliza los conmutadores DLP de la izquierda para activar las políticas de seguridad y enmascarar información en caliente.</li>
+                        <li>Haz clic en <strong>'Procesar en IA Seguro'</strong> una vez alcances el balance normativo exacto (sin exponer secretos ni sobre-sanitizar el contexto útil).</li>
                     </ol>
                 `;
             }
